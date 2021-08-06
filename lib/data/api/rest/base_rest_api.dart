@@ -1,3 +1,4 @@
+import 'package:Unsplash_Client/data/api/rest/interceptors/auth_interceptor.dart';
 import 'package:dio/dio.dart';
 
 abstract class BaseApi {
