@@ -3,6 +3,7 @@ import 'package:Unsplash_Client/data/api/data_service/uc_photo_data_service.dart
 import 'package:Unsplash_Client/data/api/rest/photo/uc_photo_api.dart';
 import 'package:Unsplash_Client/data/api/rest/photo/uc_photo_response_parser.dart';
 import 'package:Unsplash_Client/data/api/rest/response/photo/uc_photos_reponse_list.dart';
+import 'package:Unsplash_Client/data/api/rest/response/photo/urls/uc_photo_reponse_item.dart';
 import 'package:Unsplash_Client/data/models/uc_photo.dart';
 
 class RestUCPhotoDataService extends UCPhotoDataService {
@@ -26,5 +27,17 @@ class RestUCPhotoDataService extends UCPhotoDataService {
       throw error;
     }
   }
-  
+
+  @override
+  Future<UCPhoto> photoDetails(String photoID) async {
+    try {
+      UCPhoto photo = new UCPhoto();
+      final UCPhotosResponseItem ucPhotosResponseItem = await _photoApi.fetchUCDetailsPhoto(photoID);
+      photo = UCPhotoResponseParser(photoResponse: ucPhotosResponseItem.data).parserPhoto();
+      return photo;
+    } on APIException catch(error) {
+      print('The photos request failed');
+      throw error;
+    }
+  }
 }

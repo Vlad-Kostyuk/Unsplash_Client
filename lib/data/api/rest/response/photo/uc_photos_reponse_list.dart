@@ -8,7 +8,7 @@ class UCPhotosResponseList extends Equatable {
   const UCPhotosResponseList({@required this.data});
 
   factory UCPhotosResponseList.fromJSON(json) {
-    final List<dynamic> data = json[''];
+    final List<dynamic> data = json;
     List<UCPhotoResponse> image = List<UCPhotoResponse>();
     data.forEach((element) {
       if(element['id'] != null)
